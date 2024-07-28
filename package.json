@@ -8,7 +8,9 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint:eslint": "eslint . --ext .js,.ts",
-    "lint:prettier": "prettier --check '**/*.{js,ts,html,css,scss,json}'"
+    "lint:eslint:fix": "eslint . --ext .js,.ts --fix",
+    "lint:prettier": "prettier --check '**/*.{js,ts,html,css,scss,json}'",
+    "lint:prettier:fix": "prettier --write '**/*.{js,ts,html,css,scss,json}'"
   },
   "private": true,
   "dependencies": {
