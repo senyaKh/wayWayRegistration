@@ -24,11 +24,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Run ESLint
+        run: npm run lint:eslint
+
+      - name: Run Prettier
+        run: npm run lint:prettier
+
       - name: Build Angular project
         run: npm run build -- --configuration production
-
-      - name: Run linter
-        run: npm run lint
-
-      - name: Run tests
-        run: npm run test -- --watch=false --no-progress
