@@ -11,8 +11,11 @@ module.exports = function (config) {
           '--disable-translate',
           '--disable-extensions',
           '--remote-debugging-port=9222',
+          '--disable-dev-shm-usage',
+          '--disable-software-rasterizer'
         ],
-      },
+      }
     },
+    singleRun: true,
   });
 };
