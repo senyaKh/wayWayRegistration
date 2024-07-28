@@ -27,5 +27,8 @@ jobs:
       - name: Build Angular project
         run: npm run build -- --configuration production
 
+      - name: Run linter
+        run: npm run lint
+
       - name: Run tests
         run: npm run test -- --watch=false --no-progress
