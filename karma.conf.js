@@ -4,8 +4,15 @@ module.exports = function (config) {
     customLaunchers: {
       ChromeHeadless: {
         base: 'Chrome',
-        flags: ['--no-sandbox', '--headless', '--disable-gpu', '--disable-translate', '--disable-extensions', '--remote-debugging-port=9222']
-      }
-    }
+        flags: [
+          '--no-sandbox',
+          '--headless',
+          '--disable-gpu',
+          '--disable-translate',
+          '--disable-extensions',
+          '--remote-debugging-port=9222',
+        ],
+      },
+    },
   });
 };

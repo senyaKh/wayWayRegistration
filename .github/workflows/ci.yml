@@ -1,9 +1,6 @@
-name: Angular CI
+name: CI
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
@@ -13,22 +10,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        
+    - name: Install dependencies
+      run: npm install
+      
+    - name: Build Angular project
+      run: npm run build -- --configuration production
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '18'
+    - name: Run Prettier check
+      run: npm run lint:prettier
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run ESLint
-        run: npm run lint:eslint
-
-      - name: Run Prettier
-        run: npm run lint:prettier
-
-      - name: Build Angular project
-        run: npm run build -- --configuration production
+    - name: Run tests
+      run: npm run test -- --watch=false --no-progress
