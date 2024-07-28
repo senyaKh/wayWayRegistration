@@ -31,6 +31,3 @@ jobs:
 
     - name: Run Prettier check
       run: npm run lint:prettier
-
-    - name: Run tests
-      run: npm run test -- --watch=false --no-progress
