@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
   email: string = '';
@@ -11,15 +11,21 @@ export class LoginComponent {
 
   onSubmit() {
     const emailInput = document.getElementById('email') as HTMLInputElement;
-    const passwordInput = document.getElementById('password') as HTMLInputElement;
-  
+    const passwordInput = document.getElementById(
+      'password',
+    ) as HTMLInputElement;
+
     const email = emailInput.value;
     const password = passwordInput.value;
-  
+
     if (email && password && this.isValidEmail(email) && password.length >= 6) {
       localStorage.setItem('email', email);
       localStorage.setItem('password', password);
-      console.log('Email and password stored in localStorage:', email, password);
+      console.log(
+        'Email and password stored in localStorage:',
+        email,
+        password,
+      );
     }
   }
 
@@ -29,6 +35,11 @@ export class LoginComponent {
   }
 
   get isFormValid(): string | boolean {
-    return this.email && this.password && this.isValidEmail(this.email) && this.password.length >= 6;
+    return (
+      this.email &&
+      this.password &&
+      this.isValidEmail(this.email) &&
+      this.password.length >= 6
+    );
   }
 }
