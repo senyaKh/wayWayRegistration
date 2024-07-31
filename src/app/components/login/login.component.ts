@@ -18,24 +18,34 @@ import { CommonModule } from '@angular/common';
 export class LoginComponent {
   email: string = '';
   password: string = '';
-
+  passwordMatch: boolean = true;
   onSubmit() {
     const emailInput = document.getElementById('email') as HTMLInputElement;
     const passwordInput = document.getElementById(
       'password',
     ) as HTMLInputElement;
+    const confirmPassword = document.getElementById(
+      'confirm-password',
+    ) as HTMLInputElement;
 
     const email = emailInput.value;
     const password = passwordInput.value;
-
-    if (email && password && this.isValidEmail(email) && password.length >= 6) {
+    const passwordMatch = confirmPassword.value === password;
+    if (
+      email &&
+      password &&
+      this.isValidEmail(email) &&
+      password.length >= 6 &&
+      passwordMatch
+    ) {
       localStorage.setItem('email', email);
       localStorage.setItem('password', password);
-      console.log(
-        'Email and password stored in localStorage:',
-        email,
-        password,
+      alert(
+        `Пароль и почта сохранены в локальном хранилище ${email} ${password}`,
       );
+    } else if (!passwordMatch) {
+      this.passwordMatch = false;
+      alert('Пароли не совпадают');
     }
   }
 
@@ -49,7 +59,8 @@ export class LoginComponent {
       this.email &&
       this.password &&
       this.isValidEmail(this.email) &&
-      this.password.length >= 6
+      this.password.length >= 6 &&
+      this.passwordMatch
     );
   }
 }
