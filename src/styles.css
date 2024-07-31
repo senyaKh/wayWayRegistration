@@ -1,1 +1,50 @@
-/* You can add global styles to this file, and also import other style files */
+@import '@angular/cdk/overlay-prebuilt.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: 'Arial, sans-serif';
+  --background: 0 0% 100%;
+  --foreground: 240 10% 3.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 3.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 10% 3.9%;
+  --primary: 154 47% 46%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 154 47% 46%;
+  --secondary-foreground: 240 5.9% 10%;
+  --muted: 154 47% 95.9%;
+  --muted-foreground: 154 5% 46.1%;
+  --accent: 154 47% 95.9%;
+  --accent-foreground: 240 5.9% 10%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 154 47% 90%;
+  --input: 154 47% 90%;
+  --ring: 154 47% 46%;
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 0 0% 98%;
+  --primary-foreground: 154 47% 46%;
+  --secondary: 154 47% 15.9%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 154 47% 15.9%;
+  --muted-foreground: 154 5% 64.9%;
+  --accent: 154 47% 15.9%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 154 47% 15.9%;
+  --input: 154 47% 15.9%;
+  --ring: 154 47% 83.9%;
+}
