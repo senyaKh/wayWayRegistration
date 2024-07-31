@@ -1,9 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HlmButtonDirective } from '../ui-button-helm/src/lib/hlm-button.directive';
 import { HlmInputModule } from '../ui-input-helm/src';
 import { HlmLabelDirective } from '../ui-label-helm/src/lib/hlm-label.directive';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import {
+  NgxIntlTelInputModule,
+  PhoneNumberFormat,
+  CountryISO,
+  SearchCountryField,
+} from 'ngx-intl-tel-input';
 
 @Component({
   selector: 'app-login',
@@ -16,9 +22,10 @@ import { FormsModule } from '@angular/forms';
     HlmInputModule,
     HlmLabelDirective,
     FormsModule,
+    NgxIntlTelInputModule,
   ],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   phone: string = '';
   password: string = '';
   confirmPassword: string = '';
@@ -29,6 +36,8 @@ export class LoginComponent {
   passwordTouched: boolean = false;
   confirmPasswordTouched: boolean = false;
   formSubmitted: boolean = false;
+
+  ngOnInit() {}
 
   onSubmit() {
     this.formSubmitted = true;
@@ -58,8 +67,8 @@ export class LoginComponent {
   }
 
   isPhoneValid(phone: string): boolean {
-    const re = /^\+\d{1,3}\d{9,}$/;
-    return re.test(phone);
+    // Логика валидации номера телефона будет реализована с помощью ngx-intl-tel-input
+    return this.phone.length > 0; // Простая проверка на пустое значение
   }
 
   isValidPassword(password: string): boolean {
