@@ -1,19 +1,27 @@
 <form
-  (submit)="onSubmit()"
+  (ngSubmit)="onSubmit()"
   class="max-w-sm mx-auto p-4 bg-white shadow-md rounded-md"
+  novalidate
 >
   <div class="mb-4">
     <label for="email" hlmLabel class="block mb-2 text-gray-700">Email:</label>
     <input
+      [(ngModel)]="email"
+      (ngModelChange)="emailTouched = email.length > 0"
+      (input)="handleInputChange($event)"
       id="email"
       name="email"
       type="email"
       hlmInput
-      class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+      class="w-full px-3 py-2 border border-gray-300 rounded-md transition-colors duration-300 ease-in-out"
+      [ngClass]="{
+        valid: emailTouched && isValidEmail(email),
+        invalid: emailTouched && !isValidEmail(email)
+      }"
       required
     />
     <div
-      *ngIf="email && !isValidEmail(email)"
+      *ngIf="emailTouched && !isValidEmail(email)"
       class="text-red-500 text-sm mt-1"
     >
       <small>Введите корректный email.</small>
@@ -25,49 +33,89 @@
       >Номер телефона:</label
     >
     <input
+      [(ngModel)]="phone"
+      (ngModelChange)="phoneTouched = phone.length > 0"
+      (input)="handleInputChange($event)"
       id="phone"
       name="phone"
       type="tel"
       hlmInput
-      class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+      class="w-full px-3 py-2 border border-gray-300 rounded-md transition-colors duration-300 ease-in-out"
+      [ngClass]="{
+        valid: phoneTouched && isPhoneValid(phone),
+        invalid: phoneTouched && !isPhoneValid(phone)
+      }"
       required
     />
+    <div
+      *ngIf="phoneTouched && !isPhoneValid(phone)"
+      class="text-red-500 text-sm mt-1"
+    >
+      <small>Введите корректный номер телефона.</small>
+    </div>
   </div>
 
-  <div class="mb-4">
+  <div class="mb-4 relative">
     <label for="password" hlmLabel class="block mb-2 text-gray-700"
       >Пароль:</label
     >
     <input
+      [(ngModel)]="password"
+      (ngModelChange)="passwordTouched = password.length > 0"
+      (input)="handleInputChange($event)"
       id="password"
       name="password"
       type="password"
       hlmInput
-      class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+      class="w-full px-3 py-2 border border-gray-300 rounded-md transition-colors duration-300 ease-in-out"
+      [ngClass]="{
+        valid:
+          passwordTouched && password.length >= 6 && isValidPassword(password),
+        invalid:
+          passwordTouched && (password.length < 6 || !isValidPassword(password))
+      }"
       required
       minlength="6"
     />
     <div
-      *ngIf="password && password.length < 6"
+      *ngIf="
+        passwordTouched && (password.length < 6 || !isValidPassword(password))
+      "
       class="text-red-500 text-sm mt-1"
     >
-      <small>Пароль должен быть не менее 6 символов.</small>
+      <small
+        >Пароль должен быть не менее 6 символов и содержать только латинские
+        буквы и арабские цифры.</small
+      >
     </div>
   </div>
 
-  <div class="mb-4">
+  <div class="mb-4 relative">
     <label for="confirm-password" hlmLabel class="block mb-2 text-gray-700"
       >Повторите пароль:</label
     >
     <input
+      [(ngModel)]="confirmPassword"
+      (ngModelChange)="confirmPasswordTouched = confirmPassword.length > 0"
+      (input)="handleInputChange($event)"
       id="confirm-password"
       name="confirm-password"
       type="password"
       hlmInput
-      class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+      class="w-full px-3 py-2 border border-gray-300 rounded-md transition-colors duration-300 ease-in-out"
+      [ngClass]="{
+        valid: confirmPasswordTouched && confirmPassword === password,
+        invalid: confirmPasswordTouched && confirmPassword !== password
+      }"
       required
       minlength="6"
     />
+    <div
+      *ngIf="confirmPasswordTouched && confirmPassword !== password"
+      class="text-red-500 text-sm mt-1"
+    >
+      <small>Пароли не совпадают.</small>
+    </div>
   </div>
 
   <div class="mb-4 flex items-center">

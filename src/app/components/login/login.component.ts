@@ -3,6 +3,8 @@ import { HlmButtonDirective } from '../ui-button-helm/src/lib/hlm-button.directi
 import { HlmInputModule } from '../ui-input-helm/src';
 import { HlmLabelDirective } from '../ui-label-helm/src/lib/hlm-label.directive';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -13,39 +15,41 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     HlmInputModule,
     HlmLabelDirective,
+    FormsModule,
   ],
 })
 export class LoginComponent {
   email: string = '';
+  phone: string = '';
   password: string = '';
+  confirmPassword: string = '';
   passwordMatch: boolean = true;
-  onSubmit() {
-    const emailInput = document.getElementById('email') as HTMLInputElement;
-    const passwordInput = document.getElementById(
-      'password',
-    ) as HTMLInputElement;
-    const confirmPassword = document.getElementById(
-      'confirm-password',
-    ) as HTMLInputElement;
+  isValidPhone: boolean = true;
 
-    const email = emailInput.value;
-    const password = passwordInput.value;
-    const passwordMatch = confirmPassword.value === password;
-    if (
-      email &&
-      password &&
-      this.isValidEmail(email) &&
-      password.length >= 6 &&
-      passwordMatch
-    ) {
-      localStorage.setItem('email', email);
-      localStorage.setItem('password', password);
-      alert(
-        `Пароль и почта сохранены в локальном хранилище ${email} ${password}`,
-      );
-    } else if (!passwordMatch) {
-      this.passwordMatch = false;
-      alert('Пароли не совпадают');
+  emailTouched: boolean = false;
+  phoneTouched: boolean = false;
+  passwordTouched: boolean = false;
+  confirmPasswordTouched: boolean = false;
+
+  onSubmit() {
+    this.passwordMatch = this.confirmPassword === this.password;
+    this.isValidPhone = this.isPhoneValid(this.phone);
+
+    if (this.isFormValid) {
+      localStorage.setItem('email', this.email);
+      localStorage.setItem('password', this.password);
+      console.log('Данные верны, можно продолжить регистрацию.');
+    } else {
+      console.log('Ошибка при вводе данных.');
+      if (!this.passwordMatch) {
+        console.error('Пароли не совпадают');
+      }
+      if (!this.isValidPhone) {
+        console.error('Неверный формат номера телефона');
+      }
+      if (!this.isValidPassword(this.password)) {
+        console.error('Пароль содержит недопустимые символы');
+      }
     }
   }
 
@@ -54,13 +58,45 @@ export class LoginComponent {
     return re.test(email);
   }
 
+  isPhoneValid(phone: string): boolean {
+    const re = /^\+\d{1,3}\d{9,}$/;
+    return re.test(phone);
+  }
+
+  isValidPassword(password: string): boolean {
+    const re = /^[a-zA-Z0-9]+$/;
+    return re.test(password);
+  }
+
   get isFormValid(): string | boolean {
     return (
       this.email &&
       this.password &&
       this.isValidEmail(this.email) &&
       this.password.length >= 6 &&
-      this.passwordMatch
+      this.passwordMatch &&
+      this.isValidPhone &&
+      this.isValidPassword(this.password)
     );
+  }
+
+  handleInputChange(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const value = target.value;
+
+    switch (target.name) {
+      case 'email':
+        this.emailTouched = value.length > 0;
+        break;
+      case 'phone':
+        this.phoneTouched = value.length > 0;
+        break;
+      case 'password':
+        this.passwordTouched = value.length > 0;
+        break;
+      case 'confirm-password':
+        this.confirmPasswordTouched = value.length > 0;
+        break;
+    }
   }
 }
