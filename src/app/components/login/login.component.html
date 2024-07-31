@@ -1,26 +1,92 @@
-<form (submit)="onSubmit()" class="login-form">
-  <div class="form-group">
-    <label for="email">Email:</label>
-    <input id="email" name="email" type="email" class="form-control" required />
-    <div *ngIf="email && !isValidEmail(email)" class="error-messages">
+<form
+  (submit)="onSubmit()"
+  class="max-w-sm mx-auto p-4 bg-white shadow-md rounded-md"
+>
+  <div class="mb-4">
+    <label for="email" hlmLabel class="block mb-2 text-gray-700">Email:</label>
+    <input
+      id="email"
+      name="email"
+      type="email"
+      hlmInput
+      class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+      required
+    />
+    <div
+      *ngIf="email && !isValidEmail(email)"
+      class="text-red-500 text-sm mt-1"
+    >
       <small>Введите корректный email.</small>
     </div>
   </div>
 
-  <div class="form-group">
-    <label for="password">Пароль:</label>
+  <div class="mb-4">
+    <label for="phone" hlmLabel class="block mb-2 text-gray-700"
+      >Номер телефона:</label
+    >
+    <input
+      id="phone"
+      name="phone"
+      type="tel"
+      hlmInput
+      class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+      required
+    />
+  </div>
+
+  <div class="mb-4">
+    <label for="password" hlmLabel class="block mb-2 text-gray-700"
+      >Пароль:</label
+    >
     <input
       id="password"
       name="password"
       type="password"
-      class="form-control"
+      hlmInput
+      class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
       required
       minlength="6"
     />
-    <div *ngIf="password && password.length < 6" class="error-messages">
+    <div
+      *ngIf="password && password.length < 6"
+      class="text-red-500 text-sm mt-1"
+    >
       <small>Пароль должен быть не менее 6 символов.</small>
     </div>
   </div>
 
-  <button type="submit" hlmBtn variant="outline">Зарегестрироваться</button>
+  <div class="mb-4">
+    <label for="confirm-password" hlmLabel class="block mb-2 text-gray-700"
+      >Повторите пароль:</label
+    >
+    <input
+      id="confirm-password"
+      name="confirm-password"
+      type="password"
+      hlmInput
+      class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+      required
+      minlength="6"
+    />
+  </div>
+
+  <div class="mb-4 flex items-center">
+    <input
+      type="checkbox"
+      id="remember"
+      name="remember"
+      hlmInput
+      class="mr-2"
+    />
+    <label for="remember" hlmLabel class="text-gray-700">Запомнить меня</label>
+  </div>
+
+  <button
+    type="submit"
+    hlmBtn
+    variant="outline"
+    class="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600"
+  >
+    Зарегистрироваться
+  </button>
 </form>

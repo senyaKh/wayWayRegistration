@@ -27,6 +27,12 @@
       ],
       "@spartan-ng/ui-formfield-helm": [
         ".\\src/app/components/ui-formfield-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-form-field-brain": [
+        ".\\src\\app\\components\\ui-form-field-brain\\src\\index.ts"
+      ],
+      "@spartan-ng/ui-forms-brain": [
+        ".\\src\\app\\components\\ui-forms-brain\\src\\index.ts"
       ]
     }
   },

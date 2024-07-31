@@ -1,12 +1,19 @@
 import { Component } from '@angular/core';
 import { HlmButtonDirective } from '../ui-button-helm/src/lib/hlm-button.directive';
+import { HlmInputModule } from '@spartan-ng/ui-input-helm';
+import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-login',
   standalone: true,
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  imports: [HlmButtonDirective, CommonModule],
+  imports: [
+    HlmButtonDirective,
+    CommonModule,
+    HlmInputModule,
+    HlmLabelDirective,
+  ],
 })
 export class LoginComponent {
   email: string = '';
