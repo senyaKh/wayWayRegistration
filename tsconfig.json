@@ -19,21 +19,13 @@
     "lib": ["ES2022", "dom"],
     "paths": {
       "@spartan-ng/ui-button-helm": [".\\ui-button-helm/src/index.ts"],
-      "@spartan-ng/ui-input-helm": [
-        ".\\src/app/components/ui-input-helm/src/index.ts"
-      ],
-      "@spartan-ng/ui-label-helm": [
-        ".\\src/app/components/ui-label-helm/src/index.ts"
-      ],
-      "@spartan-ng/ui-formfield-helm": [
-        ".\\src/app/components/ui-formfield-helm/src/index.ts"
-      ],
+      "@spartan-ng/ui-input-helm": [".\\ui-input-helm/src/index.ts"],
+      "@spartan-ng/ui-label-helm": [".\\ui-label-helm/src/index.ts"],
+      "@spartan-ng/ui-formfield-helm": [".\\ui-formfield-helm/src/index.ts"],
       "@spartan-ng/ui-form-field-brain": [
-        ".\\src\\app\\components\\ui-form-field-brain\\src\\index.ts"
+        ".\\ui-form-field-brain\\src\\index.ts"
       ],
-      "@spartan-ng/ui-forms-brain": [
-        ".\\src\\app\\components\\ui-forms-brain\\src\\index.ts"
-      ]
+      "@spartan-ng/ui-forms-brain": [".\\ui-forms-brain\\src\\index.ts"]
     }
   },
   "angularCompilerOptions": {

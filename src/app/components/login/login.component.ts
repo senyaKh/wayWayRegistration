@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { HlmButtonDirective } from '../ui-button-helm/src/lib/hlm-button.directive';
-import { HlmInputModule } from '@spartan-ng/ui-input-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
+import { HlmInputModule } from '../ui-input-helm/src';
+import { HlmLabelDirective } from '../ui-label-helm/src/lib/hlm-label.directive';
 import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-login',
