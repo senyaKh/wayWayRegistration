@@ -1,38 +1,18 @@
-.ring-green-500 {
-  border-color: #48bb78;
-}
-
-.ring-red-500 {
-  border-color: #f56565;
-}
-
-.bg-green-50 {
-  background-color: #f0fff4;
-}
-
-.bg-red-50 {
-  background-color: #ffeef0;
-}
-
-input:focus {
-  outline: none;
-  box-shadow: 0 0 5px rgba(66, 153, 225, 0.5);
-}
-
-input:focus-visible {
-  outline: none;
-}
-
-input.valid {
+.valid {
   border-color: #48bb78;
   background-color: #f0fff4;
   box-shadow: 0 0 5px rgba(72, 187, 120, 0.5);
 }
 
-input.invalid {
+.invalid {
   border-color: #f56565;
   background-color: #ffeef0;
   box-shadow: 0 0 5px rgba(245, 101, 101, 0.5);
+}
+
+input:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(66, 153, 225, 0.5);
 }
 
 input {
