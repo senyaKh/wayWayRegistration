@@ -4,31 +4,6 @@
   novalidate
 >
   <div class="mb-4">
-    <label for="email" hlmLabel class="block mb-2 text-gray-700">Email:</label>
-    <input
-      [(ngModel)]="email"
-      (ngModelChange)="emailTouched = email.length > 0"
-      (input)="handleInputChange($event)"
-      id="email"
-      name="email"
-      type="email"
-      hlmInput
-      class="w-full px-3 py-2 border border-gray-300 rounded-md transition-colors duration-300 ease-in-out"
-      [ngClass]="{
-        valid: emailTouched && isValidEmail(email),
-        invalid: emailTouched && !isValidEmail(email)
-      }"
-      required
-    />
-    <div
-      *ngIf="emailTouched && !isValidEmail(email)"
-      class="text-red-500 text-sm mt-1"
-    >
-      <small>Введите корректный email.</small>
-    </div>
-  </div>
-
-  <div class="mb-4">
     <label for="phone" hlmLabel class="block mb-2 text-gray-700"
       >Номер телефона:</label
     >
@@ -43,15 +18,25 @@
       class="w-full px-3 py-2 border border-gray-300 rounded-md transition-colors duration-300 ease-in-out"
       [ngClass]="{
         valid: phoneTouched && isPhoneValid(phone),
-        invalid: phoneTouched && !isPhoneValid(phone)
+        invalid:
+          (phoneTouched && !isPhoneValid(phone)) ||
+          (formSubmitted && phone === '')
       }"
       required
     />
     <div
-      *ngIf="phoneTouched && !isPhoneValid(phone)"
+      *ngIf="
+        (phoneTouched && !isPhoneValid(phone)) ||
+        (formSubmitted && phone === '')
+      "
       class="text-red-500 text-sm mt-1"
     >
-      <small>Введите корректный номер телефона.</small>
+      <small *ngIf="formSubmitted && phone === ''"
+        >Это поле обязательно для заполнения.</small
+      >
+      <small *ngIf="phoneTouched && !isPhoneValid(phone)"
+        >Введите корректный номер телефона.</small
+      >
     </div>
   </div>
 
@@ -72,18 +57,28 @@
         valid:
           passwordTouched && password.length >= 6 && isValidPassword(password),
         invalid:
-          passwordTouched && (password.length < 6 || !isValidPassword(password))
+          (passwordTouched &&
+            (password.length < 6 || !isValidPassword(password))) ||
+          (formSubmitted && password === '')
       }"
       required
       minlength="6"
     />
     <div
       *ngIf="
-        passwordTouched && (password.length < 6 || !isValidPassword(password))
+        (passwordTouched &&
+          (password.length < 6 || !isValidPassword(password))) ||
+        (formSubmitted && password === '')
       "
       class="text-red-500 text-sm mt-1"
     >
+      <small *ngIf="formSubmitted && password === ''"
+        >Это поле обязательно для заполнения.</small
+      >
       <small
+        *ngIf="
+          passwordTouched && (password.length < 6 || !isValidPassword(password))
+        "
         >Пароль должен быть не менее 6 символов и содержать только латинские
         буквы и арабские цифры.</small
       >
@@ -105,16 +100,26 @@
       class="w-full px-3 py-2 border border-gray-300 rounded-md transition-colors duration-300 ease-in-out"
       [ngClass]="{
         valid: confirmPasswordTouched && confirmPassword === password,
-        invalid: confirmPasswordTouched && confirmPassword !== password
+        invalid:
+          (confirmPasswordTouched && confirmPassword !== password) ||
+          (formSubmitted && confirmPassword === '')
       }"
       required
       minlength="6"
     />
     <div
-      *ngIf="confirmPasswordTouched && confirmPassword !== password"
+      *ngIf="
+        (confirmPasswordTouched && confirmPassword !== password) ||
+        (formSubmitted && confirmPassword === '')
+      "
       class="text-red-500 text-sm mt-1"
     >
-      <small>Пароли не совпадают.</small>
+      <small *ngIf="formSubmitted && confirmPassword === ''"
+        >Это поле обязательно для заполнения.</small
+      >
+      <small *ngIf="confirmPasswordTouched && confirmPassword !== password"
+        >Пароли не совпадают.</small
+      >
     </div>
   </div>
 

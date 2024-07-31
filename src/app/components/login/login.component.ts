@@ -19,24 +19,28 @@ import { FormsModule } from '@angular/forms';
   ],
 })
 export class LoginComponent {
-  email: string = '';
   phone: string = '';
   password: string = '';
   confirmPassword: string = '';
   passwordMatch: boolean = true;
   isValidPhone: boolean = true;
 
-  emailTouched: boolean = false;
   phoneTouched: boolean = false;
   passwordTouched: boolean = false;
   confirmPasswordTouched: boolean = false;
+  formSubmitted: boolean = false;
 
   onSubmit() {
+    this.formSubmitted = true;
+    this.phoneTouched = true;
+    this.passwordTouched = true;
+    this.confirmPasswordTouched = true;
+
     this.passwordMatch = this.confirmPassword === this.password;
     this.isValidPhone = this.isPhoneValid(this.phone);
 
-    if (this.isFormValid) {
-      localStorage.setItem('email', this.email);
+    if (this.isFormValid()) {
+      localStorage.setItem('phone', this.phone);
       localStorage.setItem('password', this.password);
       console.log('Данные верны, можно продолжить регистрацию.');
     } else {
@@ -53,11 +57,6 @@ export class LoginComponent {
     }
   }
 
-  isValidEmail(email: string): boolean {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email);
-  }
-
   isPhoneValid(phone: string): boolean {
     const re = /^\+\d{1,3}\d{9,}$/;
     return re.test(phone);
@@ -68,11 +67,11 @@ export class LoginComponent {
     return re.test(password);
   }
 
-  get isFormValid(): string | boolean {
+  isFormValid(): string | boolean {
     return (
-      this.email &&
+      this.phone &&
       this.password &&
-      this.isValidEmail(this.email) &&
+      this.confirmPassword &&
       this.password.length >= 6 &&
       this.passwordMatch &&
       this.isValidPhone &&
@@ -85,9 +84,6 @@ export class LoginComponent {
     const value = target.value;
 
     switch (target.name) {
-      case 'email':
-        this.emailTouched = value.length > 0;
-        break;
       case 'phone':
         this.phoneTouched = value.length > 0;
         break;
