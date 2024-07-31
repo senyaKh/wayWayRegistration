@@ -1,0 +1,51 @@
+.header {
+  margin: 40px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+  width: auto;
+  height: auto;
+  
+}
+
+.header__logo img {
+  width: auto;
+  height: auto;
+}
+
+.header__nav {
+  flex: 1; /* Занимает 50% ширины */
+  display: flex;
+  align-items: center; /* Выравнивание по вертикали */
+  justify-content: flex-start; /* Выравнивание по левому краю */
+}
+
+.header__nav ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.header__nav li {
+  margin: 0 15px;
+  font-size: 16px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+}
+
+.header__nav a {
+  text-decoration: none;
+  color: #000;
+}
+
+.header__nav a:hover {
+  color: #007bff;
+}
