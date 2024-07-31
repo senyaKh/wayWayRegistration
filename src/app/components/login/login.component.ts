@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
-
+import { HlmButtonDirective } from '../ui-button-helm/src/lib/hlm-button.directive';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-login',
+  standalone: true,
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
+  imports: [HlmButtonDirective, CommonModule],
 })
 export class LoginComponent {
   email: string = '';
