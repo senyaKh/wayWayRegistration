@@ -1,12 +1,13 @@
+<div class="flex">
+  <div class="w-1/2 p-4">
 <form
   (ngSubmit)="onSubmit()"
-  class="max-w-sm mx-auto p-4 bg-white shadow-md rounded-md"
+    class="max-w-sm mx-auto p-4 bg-white shadow-md rounded-md"
   novalidate
 >
-  <h1 class="text-2xl font-bold mb-4">Регистрация</h1>
-  <p>Пожалуйста, выберите тип аккаунта, 
+  <h1 class="text-[47px] font-bold mb-4">Регистрация</h1>
+  <p class="mb-4 text-gray-700text-sm">Пожалуйста, выберите тип аккаунта, 
     который Вы хотите создать</p>
-  <p>Тип аккаунта </p>
   
   <div class="mb-4">
     <label for="phone" hlmLabel class="block mb-2 text-gray-700"
@@ -143,8 +144,36 @@
     type="submit"
     hlmBtn
     variant="outline"
-    class="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600"
+    class="w-full bg-green-400 text-white py-2 rounded-md hover:bg-green-600"
   >
     Зарегистрироваться
   </button>
 </form>
+
+</div>
+<!-- Правая половина экрана -->
+<div class="  flex items-center">
+  <div class="w-1/2 p-4 bg-white flex flex-col items-center">
+    <button class="px-3 py-2 text-black-500 hover:bg-black-500 hover:text-white transition-colors" id="prevBtn">
+      <svg class="w-6 h-6 rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+      </svg>
+    </button>
+
+    <div class="flex flex-col items-center space-y-2 overflow-hidden max-h-80" id="pagination">
+      <div class="flex flex-col transition-transform duration-300" id="paginationContent">
+        <span class="px-4 py-2 text-black-500 rounded-full mx-1">1</span>
+        <span class="px-4 py-2 text-black-500 rounded-full mx-1">2</span>
+        <span class="px-4 py-2 text-black-500 rounded-full mx-1 ">3</span>
+        <span class="px-4 py-2 text-black-500 rounded-full mx-1">4</span>
+        <span class="px-4 py-2 text-black-500 rounded-full mx-1">5</span>
+      </div>
+    </div>
+
+    <button class="px-3 py-2 text-black-500 hover:bg-black-500 hover:text-white transition-colors" id="nextBtn">
+      <svg class="w-6 h-6 -rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+      </svg>
+    </button>
+  </div>
+</div>

@@ -9,10 +9,13 @@
 .header__logo {
   display: flex;
   align-items: center;
-  width: auto;
-  height: auto;
-  
-}
+    width: 235px; 
+    height: 65px;
+    background-image: url('../../../assets/logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
 
 .header__logo img {
   width: auto;
@@ -20,10 +23,11 @@
 }
 
 .header__nav {
-  flex: 1; /* Занимает 50% ширины */
+  flex: 1;
   display: flex;
-  align-items: center; /* Выравнивание по вертикали */
-  justify-content: flex-start; /* Выравнивание по левому краю */
+  align-items: center;
+  justify-content: flex-start; 
+  
 }
 
 .header__nav ul {
@@ -41,11 +45,12 @@
   align-items: center;
 }
 
-.header__nav a {
+.header__nav li {
   text-decoration: none;
-  color: #000;
+  color: #9B9B9B  ;
 }
 
-.header__nav a:hover {
+.header__nav li:hover {
   color: #007bff;
+  cursor: pointer;
 }

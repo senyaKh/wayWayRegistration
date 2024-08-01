@@ -11,7 +11,6 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   imports: [
-    HlmButtonDirective,
     CommonModule,
     HlmInputModule,
     HlmLabelDirective,
