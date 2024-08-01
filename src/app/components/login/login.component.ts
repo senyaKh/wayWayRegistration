@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { HlmButtonDirective } from '../ui-button-helm/src/lib/hlm-button.directive';
 import { HlmInputModule } from '../ui-input-helm/src';
 import { HlmLabelDirective } from '../ui-label-helm/src/lib/hlm-label.directive';
 import { CommonModule } from '@angular/common';
@@ -10,12 +9,7 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  imports: [
-    CommonModule,
-    HlmInputModule,
-    HlmLabelDirective,
-    FormsModule,
-  ],
+  imports: [CommonModule, HlmInputModule, HlmLabelDirective, FormsModule],
 })
 export class LoginComponent {
   phone: string = '';
@@ -101,7 +95,7 @@ export class LoginComponent {
     { id: 2, caption: 'Подпись 2' },
     { id: 3, caption: 'Подпись 3' },
     { id: 4, caption: 'Подпись 4' },
-    { id: 5, caption: 'Подпись 5' }
+    { id: 5, caption: 'Подпись 5' },
   ];
 
   onPrevClick() {
@@ -113,6 +107,8 @@ export class LoginComponent {
   onNextClick() {
     if (this.currentIndex < this.photos.length - 1) {
       this.currentIndex++;
+    } else if (this.currentIndex === this.photos.length - 1) {
+      this.currentIndex = 0;
     }
   }
 

@@ -240,7 +240,9 @@
     <div
       *ngFor="let photo of photos; let i = index"
       [ngClass]="{ 'border-2 border-green-500': currentIndex === i }"
-      class="relative rounded-lg shadow-lg h-64 transition-transform duration-300"
+      class="relative rounded-lg shadow-lg h-64 transition-transform duration-300 img-container-{{
+        i + 1
+      }}"
       [style.transform]="'translateY(-' + currentIndex * 100 + '%)'"
     >
       <div

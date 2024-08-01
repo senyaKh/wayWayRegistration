@@ -26,7 +26,7 @@ input {
 
 .img-container-1 {
   width: 400px;
-  height:245px;
+  height: 245px;
   background-image: url('../../../assets/agent.png');
   background-size: contain;
   background-repeat: no-repeat;
@@ -35,7 +35,7 @@ input {
 
 .img-container-2 {
   width: 400px;
-  height:400px;
+  height: 400px;
   background-image: url('../../../assets/patient.png');
   background-size: contain;
   background-repeat: no-repeat;
@@ -44,10 +44,25 @@ input {
 
 .img-container-3 {
   width: 400px;
-  height:400px;
+  height: 400px;
   background-image: url('../../../assets/stomatolog.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
 }
-
+.img-container-4 {
+  width: 400px;
+  height: 400px;
+  background-image: url('../../../assets/stomatologia.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.img-container-5 {
+  width: 400px;
+  height: 400px;
+  background-image: url('../../../assets/women.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}

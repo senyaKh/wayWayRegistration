@@ -3,19 +3,18 @@
   display: flex;
   align-items: center;
   padding: 0 20px;
-
 }
 
 .header__logo {
   display: flex;
   align-items: center;
-    width: 235px; 
-    height: 65px;
-    background-image: url('../../../assets/logo.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
+  width: 235px;
+  height: 65px;
+  background-image: url('../../../assets/logo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 
 .header__logo img {
   width: auto;
@@ -26,8 +25,7 @@
   flex: 1;
   display: flex;
   align-items: center;
-  justify-content: flex-start; 
-  
+  justify-content: flex-start;
 }
 
 .header__nav ul {
@@ -47,7 +45,7 @@
 
 .header__nav li {
   text-decoration: none;
-  color: #9B9B9B  ;
+  color: #9b9b9b;
 }
 
 .header__nav li:hover {
