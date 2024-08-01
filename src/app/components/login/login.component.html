@@ -1,184 +1,258 @@
 <div class="flex">
   <div class="w-1/2 p-4 mb-4">
-<form
-  (ngSubmit)="onSubmit()"
-    class="max-w-sm mx-auto p-4 bg-white shadow-md rounded-md"
-  novalidate
->
-  <h1 class="text-[47px] font-bold mb-4">Регистрация</h1>
-  <p class="mb-10 text-gray-500 text-lg">Пожалуйста, выберите тип аккаунта, 
-    который Вы хотите создать</p>
-  
-  <div class="mb-4">
-    <label for="phone" hlmLabel class="block mb-2 text-gray-700"
-      >Номер телефона:</label
+    <form
+      (ngSubmit)="onSubmit()"
+      class="max-w-sm mx-auto p-4 bg-white shadow-md rounded-md"
+      novalidate
     >
-    <input
-      [(ngModel)]="phone"
-      (ngModelChange)="phoneTouched = phone.length > 0"
-      (input)="handleInputChange($event)"
-      id="phone"
-      name="phone"
-      type="tel"
-      hlmInput
-      class="w-full px-3 py-2 border border-gray-300 rounded-md transition-colors duration-300 ease-in-out"
-      [ngClass]="{
-        valid: phoneTouched && isPhoneValid(phone),
-        invalid:
-          (phoneTouched && !isPhoneValid(phone)) ||
-          (formSubmitted && phone === '')
-      }"
-      required
-    />
-    <div
-      *ngIf="
-        (phoneTouched && !isPhoneValid(phone)) ||
-        (formSubmitted && phone === '')
-      "
-      class="text-red-500 text-sm mt-1"
-    >
-      <small *ngIf="formSubmitted && phone === ''"
-        >Это поле обязательно для заполнения.</small
+      <h1 class="text-[47px] font-bold mb-4">Регистрация</h1>
+      <p class="mb-10 text-gray-500 text-lg">
+        Пожалуйста, выберите тип аккаунта, который Вы хотите создать
+      </p>
+
+      <div class="mb-4">
+        <label for="phone" hlmLabel class="block mb-2 text-gray-700"
+          >Номер телефона:</label
+        >
+        <input
+          [(ngModel)]="phone"
+          (ngModelChange)="phoneTouched = phone.length > 0"
+          (input)="handleInputChange($event)"
+          id="phone"
+          name="phone"
+          type="tel"
+          hlmInput
+          class="w-full px-3 py-2 border border-gray-300 rounded-md transition-colors duration-300 ease-in-out"
+          [ngClass]="{
+            valid: phoneTouched && isPhoneValid(phone),
+            invalid:
+              (phoneTouched && !isPhoneValid(phone)) ||
+              (formSubmitted && phone === '')
+          }"
+          required
+        />
+        <div
+          *ngIf="
+            (phoneTouched && !isPhoneValid(phone)) ||
+            (formSubmitted && phone === '')
+          "
+          class="text-red-500 text-sm mt-1"
+        >
+          <small *ngIf="formSubmitted && phone === ''"
+            >Это поле обязательно для заполнения.</small
+          >
+          <small *ngIf="phoneTouched && !isPhoneValid(phone)"
+            >Введите корректный номер телефона.</small
+          >
+        </div>
+      </div>
+
+      <div class="mb-4 relative">
+        <label for="password" hlmLabel class="block mb-2 text-gray-700"
+          >Пароль:</label
+        >
+        <input
+          [(ngModel)]="password"
+          (ngModelChange)="passwordTouched = password.length > 0"
+          (input)="handleInputChange($event)"
+          id="password"
+          name="password"
+          type="password"
+          hlmInput
+          class="w-full px-3 py-2 border border-gray-300 rounded-md transition-colors duration-300 ease-in-out"
+          [ngClass]="{
+            valid:
+              passwordTouched &&
+              password.length >= 6 &&
+              isValidPassword(password),
+            invalid:
+              (passwordTouched &&
+                (password.length < 6 || !isValidPassword(password))) ||
+              (formSubmitted && password === '')
+          }"
+          required
+          minlength="6"
+        />
+        <div
+          *ngIf="
+            (passwordTouched &&
+              (password.length < 6 || !isValidPassword(password))) ||
+            (formSubmitted && password === '')
+          "
+          class="text-red-500 text-sm mt-1"
+        >
+          <small *ngIf="formSubmitted && password === ''"
+            >Это поле обязательно для заполнения.</small
+          >
+          <small
+            *ngIf="
+              passwordTouched &&
+              (password.length < 6 || !isValidPassword(password))
+            "
+            >Пароль должен быть не менее 6 символов и содержать только латинские
+            буквы и арабские цифры.</small
+          >
+        </div>
+      </div>
+
+      <div class="mb-4 relative">
+        <label for="confirm-password" hlmLabel class="block mb-2 text-gray-700"
+          >Повторите пароль:</label
+        >
+        <input
+          [(ngModel)]="confirmPassword"
+          (ngModelChange)="confirmPasswordTouched = confirmPassword.length > 0"
+          (input)="handleInputChange($event)"
+          id="confirm-password"
+          name="confirm-password"
+          type="password"
+          hlmInput
+          class="w-full px-3 py-2 border border-gray-300 rounded-md transition-colors duration-300 ease-in-out"
+          [ngClass]="{
+            valid: confirmPasswordTouched && confirmPassword === password,
+            invalid:
+              (confirmPasswordTouched && confirmPassword !== password) ||
+              (formSubmitted && confirmPassword === '')
+          }"
+          required
+          minlength="6"
+        />
+        <div
+          *ngIf="
+            (confirmPasswordTouched && confirmPassword !== password) ||
+            (formSubmitted && confirmPassword === '')
+          "
+          class="text-red-500 text-sm mt-1"
+        >
+          <small *ngIf="formSubmitted && confirmPassword === ''"
+            >Это поле обязательно для заполнения.</small
+          >
+          <small *ngIf="confirmPasswordTouched && confirmPassword !== password"
+            >Пароли не совпадают.</small
+          >
+        </div>
+      </div>
+
+      <div class="mb-4 flex items-center">
+        <input
+          type="checkbox"
+          id="remember"
+          name="remember"
+          hlmInput
+          class="mr-2"
+        />
+        <label for="remember" hlmLabel class="text-gray-700"
+          >Запомнить меня</label
+        >
+      </div>
+
+      <button
+        type="submit"
+        hlmBtn
+        variant="outline"
+        class="w-full bg-green-400 text-white py-2 rounded-md hover:bg-green-600"
       >
-      <small *ngIf="phoneTouched && !isPhoneValid(phone)"
-        >Введите корректный номер телефона.</small
+        Зарегистрироваться
+      </button>
+    </form>
+
+    <p class="max-w-sm mx-auto my-0 w-1/2 p-1 mt-1 text-xs">
+      У Вас уже есть аккаунт? Тогда
+      <a href="#" class="font-bold">Войдите в свой профиль</a>
+    </p>
+    <p class="max-w-sm mx-auto my-0 w-1/2 p-1 mt-14 text-xs">
+      Ознакомиться с
+      <a href="#" class="font-bold"
+        >Политикой конфиденциальностии Условиями предоставления услуг</a
       >
+    </p>
+  </div>
+
+  <!-- Правая половина экрана -->
+  <div class="flex items-center">
+    <div class="w-1/4 bg-white flex flex-col items-center">
+      <button
+        class="px-3 py-2 text-black-500 hover:bg-black-500 hover:text-green transition-colors"
+        (click)="onPrevClick()"
+      >
+        <svg
+          class="w-6 h-6 rotate-90"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 19l-7-7 7-7"
+          ></path>
+        </svg>
+      </button>
+
+      <div
+        class="flex flex-col items-center space-y-2 overflow-hidden max-h-80"
+        id="pagination"
+      >
+        <div
+          class="flex flex-col transition-transform duration-300"
+          id="paginationContent"
+        >
+          <span
+            *ngFor="let photo of photos; let i = index"
+            (click)="onSelectPhoto(i)"
+            [ngClass]="{
+              'bg-green-300 text-white': currentIndex === i,
+              'bg-white text-black': currentIndex !== i
+            }"
+            class="w-10 h-10 flex items-center justify-center border border-transparent hover:border-gray-300 hover:bg-green-300 hover:rounded-sm transition-colors mx-1 cursor-pointer"
+          >
+            {{ photo.id }}
+          </span>
+        </div>
+      </div>
+
+      <button
+        class="px-3 py-2 text-black-500 hover:bg-black-500 hover:text-green transition-colors"
+        (click)="onNextClick()"
+      >
+        <svg
+          class="w-6 h-6 -rotate-90"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 19l-7-7 7-7"
+          ></path>
+        </svg>
+      </button>
     </div>
   </div>
 
-  <div class="mb-4 relative">
-    <label for="password" hlmLabel class="block mb-2 text-gray-700"
-      >Пароль:</label
-    >
-    <input
-      [(ngModel)]="password"
-      (ngModelChange)="passwordTouched = password.length > 0"
-      (input)="handleInputChange($event)"
-      id="password"
-      name="password"
-      type="password"
-      hlmInput
-      class="w-full px-3 py-2 border border-gray-300 rounded-md transition-colors duration-300 ease-in-out"
-      [ngClass]="{
-        valid:
-          passwordTouched && password.length >= 6 && isValidPassword(password),
-        invalid:
-          (passwordTouched &&
-            (password.length < 6 || !isValidPassword(password))) ||
-          (formSubmitted && password === '')
-      }"
-      required
-      minlength="6"
-    />
+  <!-- Фотографии -->
+  <div class="absolute top-0 right-40 w-1/4 p-4 flex flex-col space-y-4">
     <div
-      *ngIf="
-        (passwordTouched &&
-          (password.length < 6 || !isValidPassword(password))) ||
-        (formSubmitted && password === '')
-      "
-      class="text-red-500 text-sm mt-1"
+      *ngFor="let photo of photos; let i = index"
+      [ngClass]="{ 'border-2 border-green-500': currentIndex === i }"
+      class="relative rounded-lg shadow-lg h-64 transition-transform duration-300"
+      [style.transform]="'translateY(-' + currentIndex * 100 + '%)'"
     >
-      <small *ngIf="formSubmitted && password === ''"
-        >Это поле обязательно для заполнения.</small
+      <div
+        class="absolute top-2 left-2 bg-white border border-gray-300 text-black px-2 py-1 rounded-md text-xs"
       >
-      <small
-        *ngIf="
-          passwordTouched && (password.length < 6 || !isValidPassword(password))
-        "
-        >Пароль должен быть не менее 6 символов и содержать только латинские
-        буквы и арабские цифры.</small
+        {{ photo.id }}
+      </div>
+      <div
+        class="absolute bottom-2 right-2 bg-white border border-gray-300 text-black px-2 py-1 rounded-md text-xs"
       >
-    </div>
-  </div>
-
-  <div class="mb-4 relative">
-    <label for="confirm-password" hlmLabel class="block mb-2 text-gray-700"
-      >Повторите пароль:</label
-    >
-    <input
-      [(ngModel)]="confirmPassword"
-      (ngModelChange)="confirmPasswordTouched = confirmPassword.length > 0"
-      (input)="handleInputChange($event)"
-      id="confirm-password"
-      name="confirm-password"
-      type="password"
-      hlmInput
-      class="w-full px-3 py-2 border border-gray-300 rounded-md transition-colors duration-300 ease-in-out"
-      [ngClass]="{
-        valid: confirmPasswordTouched && confirmPassword === password,
-        invalid:
-          (confirmPasswordTouched && confirmPassword !== password) ||
-          (formSubmitted && confirmPassword === '')
-      }"
-      required
-      minlength="6"
-    />
-    <div
-      *ngIf="
-        (confirmPasswordTouched && confirmPassword !== password) ||
-        (formSubmitted && confirmPassword === '')
-      "
-      class="text-red-500 text-sm mt-1"
-    >
-      <small *ngIf="formSubmitted && confirmPassword === ''"
-        >Это поле обязательно для заполнения.</small
-      >
-      <small *ngIf="confirmPasswordTouched && confirmPassword !== password"
-        >Пароли не совпадают.</small
-      >
-    </div>
-  </div>
-
-  <div class="mb-4 flex items-center">
-    <input
-      type="checkbox"
-      id="remember"
-      name="remember"
-      hlmInput
-      class="mr-2"
-    />
-    <label for="remember" hlmLabel class="text-gray-700">Запомнить меня</label>
-  </div>
-
-  <button
-    type="submit"
-    hlmBtn
-    variant="outline"
-    class="w-full bg-green-400 text-white py-2 rounded-md hover:bg-green-600"
-  >
-    Зарегистрироваться
-  </button>
-</form>
-
-<p class="max-w-sm mx-auto my-0 w-1/2 p-1 mt-1 text-xs" > У Вас уже есть аккаунт? Тогда <a href="#" class="font-bold">Войдите в свой профиль</a></p>
-<p class="max-w-sm mx-auto my-0 w-1/2 p-1 mt-14 text-xs" > Ознакомиться с <a href="#" class="font-bold">Политикой конфиденциальности и Условиями предоставления услуг</a></p>
-
-</div>
-<!-- Правая половина экрана -->
-<div class="  flex items-center">
-  <div class="w-1/2  bg-white flex flex-col items-center">
-    <button class="px-3 py-2 text-black-500 hover:bg-black-500 hover:text-green transition-colors" id="prevBtn">
-      <svg class="w-6 h-6 rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-      </svg>
-    </button>
-
-    <div class="flex flex-col items-center space-y-2 overflow-hidden max-h-80" id="pagination">
-      <div class="flex flex-col transition-transform duration-300" id="paginationContent">
-        <span class="w-10 h-10 flex items-center justify-center text-black bg-white border border-transparent hover:border-gray-300 hover:bg-green-300 hover:rounded-sm hover:text-white transition-colors mx-1">1</span>
-        <span class="w-10 h-10 flex items-center justify-center text-black bg-white border border-transparent hover:border-gray-300 hover:bg-green-300 hover:rounded-sm hover:text-white transition-colors mx-1">2</span>
-        <span class="w-10 h-10 flex items-center justify-center text-black bg-white border border-transparent hover:border-gray-300 hover:bg-green-300 hover:rounded-sm hover:text-white transition-colors mx-1">3</span>
-        <span class="w-10 h-10 flex items-center justify-center text-black bg-white border border-transparent hover:border-gray-300 hover:bg-green-300 hover:rounded-sm hover:text-white transition-colors mx-1">4</span>
-        <span class="w-10 h-10 flex items-center justify-center text-black bg-white border border-transparent hover:border-gray-300 hover:bg-green-300 hover:rounded-sm hover:text-white transition-colors mx-1">5</span>
+        {{ photo.caption }}
       </div>
     </div>
-    
-    
-
-    <button class="px-3 py-2 text-black-500 hover:bg-black-500 hover:text-green transition-colors" id="nextBtn">
-      <svg class="w-6 h-6 -rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-      </svg>
-    </button>
   </div>
 </div>

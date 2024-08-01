@@ -94,4 +94,29 @@ export class LoginComponent {
         break;
     }
   }
+
+  currentIndex = 0;
+  photos = [
+    { id: 1, caption: 'Подпись 1' },
+    { id: 2, caption: 'Подпись 2' },
+    { id: 3, caption: 'Подпись 3' },
+    { id: 4, caption: 'Подпись 4' },
+    { id: 5, caption: 'Подпись 5' }
+  ];
+
+  onPrevClick() {
+    if (this.currentIndex > 0) {
+      this.currentIndex--;
+    }
+  }
+
+  onNextClick() {
+    if (this.currentIndex < this.photos.length - 1) {
+      this.currentIndex++;
+    }
+  }
+
+  onSelectPhoto(index: number) {
+    this.currentIndex = index;
+  }
 }
