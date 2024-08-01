@@ -6,7 +6,6 @@
       novalidate
     >
       <h1 class="text-[47px] font-bold mb-4">Регистрация</h1>
-      <app-telephone-input></app-telephone-input>
       <p class="mb-10 text-gray-500 text-lg">
         Пожалуйста, выберите тип аккаунта, который Вы хотите создать
       </p>
@@ -15,23 +14,7 @@
         <label for="phone" hlmLabel class="block mb-2 text-gray-700"
           >Номер телефона:</label
         >
-        <input
-          [(ngModel)]="phone"
-          (ngModelChange)="phoneTouched = phone.length > 0"
-          (input)="handleInputChange($event)"
-          id="phone"
-          name="phone"
-          type="tel"
-          hlmInput
-          class="w-full px-3 py-2 border border-gray-300 rounded-md transition-colors duration-300 ease-in-out"
-          [ngClass]="{
-            valid: phoneTouched && isPhoneValid(phone),
-            invalid:
-              (phoneTouched && !isPhoneValid(phone)) ||
-              (formSubmitted && phone === '')
-          }"
-          required
-        />
+        <app-telephone-input></app-telephone-input>
         <div
           *ngIf="
             (phoneTouched && !isPhoneValid(phone)) ||
