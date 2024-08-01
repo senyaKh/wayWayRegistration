@@ -3,13 +3,19 @@ import { HlmInputModule } from '../ui-input-helm/src';
 import { HlmLabelDirective } from '../ui-label-helm/src/lib/hlm-label.directive';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+import { TelephoneInputComponent } from '../telephone-input/telephone-input.component';
 @Component({
   selector: 'app-login',
   standalone: true,
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  imports: [CommonModule, HlmInputModule, HlmLabelDirective, FormsModule],
+  imports: [
+    CommonModule,
+    HlmInputModule,
+    HlmLabelDirective,
+    FormsModule,
+    TelephoneInputComponent,
+  ],
 })
 export class LoginComponent {
   phone: string = '';
