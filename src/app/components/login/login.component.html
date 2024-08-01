@@ -6,7 +6,7 @@
   novalidate
 >
   <h1 class="text-[47px] font-bold mb-4">Регистрация</h1>
-  <p class="mb-4 text-gray-700text-sm">Пожалуйста, выберите тип аккаунта, 
+  <p class="mb-10 text-gray-500 text-lg">Пожалуйста, выберите тип аккаунта, 
     который Вы хотите создать</p>
   
   <div class="mb-4">
@@ -150,11 +150,14 @@
   </button>
 </form>
 
+<p class="max-w-sm mx-auto my-0 w-1/2 p-1 mt-1 text-xs" > У Вас уже есть аккаунт? Тогда <a href="#" class="font-bold">Войдите в свой профиль</a></p>
+<p class="max-w-sm mx-auto my-0 w-1/2 p-1 mt-14 text-xs" > Ознакомиться с <a href="#" class="font-bold">Политикой конфиденциальности и Условиями предоставления услуг</a></p>
+
 </div>
 <!-- Правая половина экрана -->
 <div class="  flex items-center">
-  <div class="w-1/2 p-4 bg-white flex flex-col items-center">
-    <button class="px-3 py-2 text-black-500 hover:bg-black-500 hover:text-white transition-colors" id="prevBtn">
+  <div class="w-1/2  bg-white flex flex-col items-center">
+    <button class="px-3 py-2 text-black-500 hover:bg-black-500 hover:text-green transition-colors" id="prevBtn">
       <svg class="w-6 h-6 rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
       </svg>
@@ -162,15 +165,17 @@
 
     <div class="flex flex-col items-center space-y-2 overflow-hidden max-h-80" id="pagination">
       <div class="flex flex-col transition-transform duration-300" id="paginationContent">
-        <span class="px-4 py-2 text-black-500 rounded-full mx-1">1</span>
-        <span class="px-4 py-2 text-black-500 rounded-full mx-1">2</span>
-        <span class="px-4 py-2 text-black-500 rounded-full mx-1 ">3</span>
-        <span class="px-4 py-2 text-black-500 rounded-full mx-1">4</span>
-        <span class="px-4 py-2 text-black-500 rounded-full mx-1">5</span>
+        <span class="w-10 h-10 flex items-center justify-center text-black bg-white border border-transparent hover:border-gray-300 hover:bg-green-500 hover:text-white transition-colors mx-1">1</span>
+        <span class="w-10 h-10 flex items-center justify-center text-black bg-white border border-transparent hover:border-gray-300 hover:bg-green-500 hover:text-white transition-colors mx-1">2</span>
+        <span class="w-10 h-10 flex items-center justify-center text-black bg-white border border-transparent hover:border-gray-300 hover:bg-green-500 hover:text-white transition-colors mx-1">3</span>
+        <span class="w-10 h-10 flex items-center justify-center text-black bg-white border border-transparent hover:border-gray-300 hover:bg-green-500 hover:text-white transition-colors mx-1">4</span>
+        <span class="w-10 h-10 flex items-center justify-center text-black bg-white border border-transparent hover:border-gray-300 hover:bg-green-500 hover:text-white transition-colors mx-1">5</span>
       </div>
     </div>
+    
+    
 
-    <button class="px-3 py-2 text-black-500 hover:bg-black-500 hover:text-white transition-colors" id="nextBtn">
+    <button class="px-3 py-2 text-black-500 hover:bg-black-500 hover:text-green transition-colors" id="nextBtn">
       <svg class="w-6 h-6 -rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
       </svg>
