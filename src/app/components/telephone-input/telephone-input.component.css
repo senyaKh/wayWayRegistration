@@ -32,6 +32,16 @@
   --iti-flag-sprite-height: 15px;
   --iti-mobile-popup-margin: 30px;
 }
+.input-field {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: border-color 0.3s ease, background-color 0.3s ease,
+    box-shadow 0.3s ease;
+  min-width: 352px !important;
+}
 
 .iti {
   position: relative;

@@ -2,19 +2,11 @@ import {
   Component,
   ElementRef,
   EventEmitter,
-  Input,
   Output,
   ViewChild,
   ViewEncapsulation,
   AfterViewInit,
 } from '@angular/core';
-import {
-  FormGroup,
-  ValidatorFn,
-  Validators,
-  AbstractControl,
-  ValidationErrors,
-} from '@angular/forms';
 import intlTelInput from 'intl-tel-input';
 
 @Component({
@@ -25,19 +17,7 @@ import intlTelInput from 'intl-tel-input';
   styleUrls: ['./telephone-input.component.scss'],
 })
 export class TelephoneInputComponent implements AfterViewInit {
-  @Input() form!: FormGroup;
-  @Input() controlName!: string;
-  @Input() preferredCountries: string[] = [
-    'by',
-    'ru',
-    'ua',
-    'pl',
-    'lv',
-    'lt',
-    'es',
-  ];
-
-  @Output() itiInitialized = new EventEmitter<any>();
+  @Output() phoneChange = new EventEmitter<string>();
 
   @ViewChild('phoneInput', { static: true })
   phoneInput!: ElementRef<HTMLInputElement>;
@@ -58,20 +38,12 @@ export class TelephoneInputComponent implements AfterViewInit {
           .then((data) => callback(data.country_code))
           .catch(() => callback('us'));
       },
-      onlyCountries: this.preferredCountries,
+      onlyCountries: ['by', 'ru', 'ua', 'pl', 'lv', 'lt', 'es'],
     });
 
-    this.itiInitialized.emit(this.itiInstance);
-    const control = this.form.get(this.controlName);
-    if (control) {
-      control.addValidators(this.phoneValidator());
-    }
-  }
-
-  phoneValidator(): ValidatorFn {
-    return (_control: AbstractControl): ValidationErrors | null => {
-      const isValid = this.itiInstance.isValidNumber();
-      return isValid ? null : { phoneInvalid: true };
-    };
+    this.phoneInput.nativeElement.addEventListener('input', () => {
+      const phoneNumber = this.itiInstance.getNumber();
+      this.phoneChange.emit(phoneNumber);
+    });
   }
 }

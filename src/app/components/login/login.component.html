@@ -14,7 +14,9 @@
         <label for="phone" hlmLabel class="block mb-2 text-gray-700"
           >Номер телефона:</label
         >
-        <app-telephone-input></app-telephone-input>
+        <app-telephone-input
+          (phoneChange)="onPhoneChange($event)"
+        ></app-telephone-input>
         <div
           *ngIf="
             (phoneTouched && !isPhoneValid(phone)) ||

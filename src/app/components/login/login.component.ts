@@ -4,6 +4,7 @@ import { HlmLabelDirective } from '../ui-label-helm/src/lib/hlm-label.directive'
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TelephoneInputComponent } from '../telephone-input/telephone-input.component';
+
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -93,6 +94,12 @@ export class LoginComponent {
         this.confirmPasswordTouched = value.length > 0;
         break;
     }
+  }
+
+  onPhoneChange(phoneNumber: string) {
+    this.phone = phoneNumber;
+    this.isValidPhone = this.isPhoneValid(this.phone);
+    this.phoneTouched = this.phone.length > 0;
   }
 
   currentIndex = 0;
