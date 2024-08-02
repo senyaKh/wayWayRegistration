@@ -25,9 +25,11 @@
     "@spartan-ng/ui-form-field-brain": "^0.0.1-alpha.353",
     "@spartan-ng/ui-forms-brain": "^0.0.1-alpha.353",
     "@spartan-ng/ui-label-brain": "0.0.1-alpha.353",
+    "@spartan-ui/icons": "^0.2.2",
     "class-variance-authority": "^0.6.0",
     "clsx": "^1.2.1",
     "intl-tel-input": "^23.8.0",
+    "lucide-angular": "^0.424.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
