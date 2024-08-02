@@ -11,7 +11,7 @@ import { DropdownComponent } from '../dropdown/dropdown.component';
   standalone: true,
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  imports: [  
+  imports: [
     DropdownComponent,
     CommonModule,
     HlmInputModule,
@@ -20,7 +20,6 @@ import { DropdownComponent } from '../dropdown/dropdown.component';
     TelephoneInputComponent,
   ],
 })
-
 export class LoginComponent {
   phone: string = '';
   password: string = '';

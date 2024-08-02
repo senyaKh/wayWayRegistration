@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {  LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './components/login/login.component';
 import { HeaderComponent } from './components/header/header.component';
 export const routes: Routes = [
   {
@@ -17,11 +17,6 @@ import { FormsModule } from '@angular/forms'; // Import the FormsModule
 import { DropdownComponent } from './components/dropdown/dropdown.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    HeaderComponent, 
-    DropdownComponent,
-  ],
+  imports: [CommonModule, FormsModule, HeaderComponent, DropdownComponent],
 })
 export class LoginModule {}
