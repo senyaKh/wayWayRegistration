@@ -4,13 +4,15 @@ import { HlmLabelDirective } from '../ui-label-helm/src/lib/hlm-label.directive'
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TelephoneInputComponent } from '../telephone-input/telephone-input.component';
+import { DropdownComponent } from '../dropdown/dropdown.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  imports: [
+  imports: [  
+    DropdownComponent,
     CommonModule,
     HlmInputModule,
     HlmLabelDirective,
@@ -18,6 +20,7 @@ import { TelephoneInputComponent } from '../telephone-input/telephone-input.comp
     TelephoneInputComponent,
   ],
 })
+
 export class LoginComponent {
   phone: string = '';
   password: string = '';
