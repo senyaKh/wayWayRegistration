@@ -32,7 +32,7 @@ export class TelephoneInputComponent implements AfterViewInit {
       utilsScript:
         'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.15/js/utils.min.js',
       initialCountry: 'auto',
-      geoIpLookup: (callback) => {
+      geoIpLookup: (callback:any) => {
         fetch('https://ipapi.co/json/')
           .then((response) => response.json())
           .then((data) => callback(data.country_code))
