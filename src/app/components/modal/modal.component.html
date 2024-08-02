@@ -1,0 +1,13 @@
+<div class="modal" *ngIf="isVisible">
+    <div class="modal-content">
+      <span class="close" (click)="closeModal()">&times;</span>
+      <h2>Введите код подтверждения</h2>
+      <form (ngSubmit)="submitCode()">
+        <label for="verificationCode">Код подтверждения:</label>
+        <input id="verificationCode" [(ngModel)]="verificationCode" name="verificationCode" required>
+        <button type="submit">Подтвердить</button>
+      </form>
+    </div>
+  </div>
+  
+  

@@ -11,9 +11,10 @@ import { CommonModule } from '@angular/common';
 })
 export class DropdownComponent {
   options = [
-    { value: 'option1', label: '1' },
-    { value: 'option2', label: '2' },
-    { value: 'option3', label: '3' },
+    { value: 'option1', label: 'Аккаунт пациента ' },
+    { value: 'option2', label: 'Аккаунт стоматолога' },
+    { value: 'option3', label: 'Аккаунт стоматологической клиники' },
+    { value: 'option4', label: 'Аккаунт страхового агента' },
   ];
 
   selectedOption: string = this.options[0].value;

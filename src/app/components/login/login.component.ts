@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TelephoneInputComponent } from '../telephone-input/telephone-input.component';
 import { DropdownComponent } from '../dropdown/dropdown.component';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +13,7 @@ import { DropdownComponent } from '../dropdown/dropdown.component';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   imports: [
+    ModalComponent,
     DropdownComponent,
     CommonModule,
     HlmInputModule,
@@ -32,10 +34,9 @@ export class LoginComponent {
   confirmPasswordTouched: boolean = false;
   formSubmitted: boolean = false;
 
+  showModal: boolean = false;
   onSubmit() {
-    const phoneInputElement = document.getElementById(
-      'phoneInput',
-    ) as HTMLInputElement;
+    const phoneInputElement = document.getElementById('phoneInput') as HTMLInputElement;
     this.phone = phoneInputElement?.value || '';
 
     this.formSubmitted = true;
@@ -50,6 +51,7 @@ export class LoginComponent {
       localStorage.setItem('phone', this.phone);
       localStorage.setItem('password', this.password);
       console.log('Данные верны, можно продолжить регистрацию.');
+      this.showModal = true;  // Показать модальное окно
     } else {
       console.log('Ошибка при вводе данных.');
       if (!this.passwordMatch) {
@@ -62,6 +64,10 @@ export class LoginComponent {
         console.error('Пароль содержит недопустимые символы');
       }
     }
+  }
+
+  closeModal() {
+    this.showModal = false;  // Скрыть модальное окно
   }
 
   isPhoneValid(phone: string): boolean {
