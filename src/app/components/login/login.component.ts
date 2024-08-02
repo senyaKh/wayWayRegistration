@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TelephoneInputComponent } from '../telephone-input/telephone-input.component';
 import { DropdownComponent } from '../dropdown/dropdown.component';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,7 @@ import { DropdownComponent } from '../dropdown/dropdown.component';
     HlmLabelDirective,
     FormsModule,
     TelephoneInputComponent,
+    ModalComponent,
   ],
 })
 
