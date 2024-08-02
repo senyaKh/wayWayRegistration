@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { HlmInputModule } from '../ui-input-helm/src';
-import { HlmLabelDirective } from '../ui-label-helm/src/lib/hlm-label.directive';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HlmInputModule } from '../ui-input-helm/src';
+import { HlmLabelDirective } from '../ui-label-helm/src/lib/hlm-label.directive';
 import { TelephoneInputComponent } from '../telephone-input/telephone-input.component';
 import { DropdownComponent } from '../dropdown/dropdown.component';
 @Component({
@@ -11,12 +11,12 @@ import { DropdownComponent } from '../dropdown/dropdown.component';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   imports: [
-    DropdownComponent,
     CommonModule,
+    FormsModule,
     HlmInputModule,
     HlmLabelDirective,
-    FormsModule,
     TelephoneInputComponent,
+    DropdownComponent,
   ],
 })
 export class LoginComponent {
@@ -30,6 +30,17 @@ export class LoginComponent {
   passwordTouched: boolean = false;
   confirmPasswordTouched: boolean = false;
   formSubmitted: boolean = false;
+
+  passwordVisible: boolean = false;
+  confirmPasswordVisible: boolean = false;
+
+  togglePasswordVisibility(field: string) {
+    if (field === 'password') {
+      this.passwordVisible = !this.passwordVisible;
+    } else if (field === 'confirmPassword') {
+      this.confirmPasswordVisible = !this.confirmPasswordVisible;
+    }
+  }
 
   showModal: boolean = false;
   onSubmit() {

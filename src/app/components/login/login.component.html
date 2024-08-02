@@ -10,14 +10,14 @@
         Пожалуйста, выберите тип аккаунта, который Вы хотите создать
       </p>
 
-      <label for="account-type" hlmLabel class="block mb-2 text-gray-700"
-        >Тип аккаунта:</label
+      <label for="account-type" hlmLabel class="block mb-2 text-gray-700">
+        Тип аккаунта:</label
       >
       <app-dropdown></app-dropdown>
 
       <div class="mb-4">
-        <label for="phone" hlmLabel class="block mb-2 text-gray-700"
-          >Номер телефона:</label
+        <label for="phone" hlmLabel class="block mb-2 text-gray-700">
+          Номер телефона:</label
         >
         <app-telephone-input
           (phoneChange)="onPhoneChange($event)"
@@ -33,41 +33,66 @@
           "
           class="text-red-500 text-sm mt-1"
         >
-          <small *ngIf="formSubmitted && phone === ''"
-            >Это поле обязательно для заполнения.</small
+          <small *ngIf="formSubmitted && phone === ''">
+            Это поле обязательно для заполнения.</small
           >
-          <small *ngIf="phoneTouched && !isPhoneValid(phone)"
-            >Введите корректный номер телефона.</small
+          <small *ngIf="phoneTouched && !isPhoneValid(phone)">
+            Введите корректный номер телефона.</small
           >
         </div>
       </div>
 
-      <div class="mb-4 relative">
-        <label for="password" hlmLabel class="block mb-2 text-gray-700"
-          >Пароль:</label
+      <!-- Поле ввода пароля -->
+      <div
+        class="mb-4 relative password-input-wrapper"
+        style="min-height: 80px"
+      >
+        <label for="password" hlmLabel class="block mb-2 text-gray-700">
+          Пароль:</label
         >
-        <input
-          [(ngModel)]="password"
-          (ngModelChange)="passwordTouched = password.length > 0"
-          (input)="handleInputChange($event)"
-          id="password"
-          name="password"
-          type="password"
-          hlmInput
-          class="w-full px-3 py-2 border border-gray-300 rounded-md transition-colors duration-300 ease-in-out"
-          [ngClass]="{
-            valid:
-              passwordTouched &&
-              password.length >= 6 &&
-              isValidPassword(password),
-            invalid:
-              (passwordTouched &&
-                (password.length < 6 || !isValidPassword(password))) ||
-              (formSubmitted && password === '')
-          }"
-          required
-          minlength="6"
-        />
+        <div class="relative">
+          <input
+            [(ngModel)]="password"
+            (ngModelChange)="passwordTouched = password.length > 0"
+            (input)="handleInputChange($event)"
+            id="password"
+            name="password"
+            [type]="passwordVisible ? 'text' : 'password'"
+            hlmInput
+            class="w-full px-3 py-2 border border-gray-300 rounded-md transition-colors duration-300 ease-in-out"
+            [ngClass]="{
+              valid:
+                passwordTouched &&
+                password.length >= 6 &&
+                isValidPassword(password),
+              invalid:
+                (passwordTouched &&
+                  (password.length < 6 || !isValidPassword(password))) ||
+                (formSubmitted && password === '')
+            }"
+            required
+            minlength="6"
+            autocomplete="off"
+          />
+          <img
+            *ngIf="!passwordVisible"
+            src="assets/icons/eye.svg"
+            alt="Show password"
+            width="24"
+            height="24"
+            class="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
+            (click)="togglePasswordVisibility('password')"
+          />
+          <img
+            *ngIf="passwordVisible"
+            src="assets/icons/eye-off.svg"
+            alt="Hide password"
+            width="24"
+            height="24"
+            class="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
+            (click)="togglePasswordVisibility('password')"
+          />
+        </div>
         <div
           *ngIf="
             (passwordTouched &&
@@ -76,8 +101,8 @@
           "
           class="text-red-500 text-sm mt-1"
         >
-          <small *ngIf="formSubmitted && password === ''"
-            >Это поле обязательно для заполнения.</small
+          <small *ngIf="formSubmitted && password === ''">
+            Это поле обязательно для заполнения.</small
           >
           <small
             *ngIf="
@@ -90,31 +115,58 @@
         </div>
       </div>
 
-      <div class="mb-4 relative">
-        <label for="confirm-password" hlmLabel class="block mb-2 text-gray-700"
-          >Повторите пароль:</label
+      <!-- Поле ввода подтверждения пароля -->
+      <div
+        class="mb-4 relative password-input-wrapper"
+        style="min-height: 80px"
+      >
+        <label for="confirm-password" hlmLabel class="block mb-2 text-gray-700">
+          Повторите пароль:</label
         >
-        <input
-          [(ngModel)]="confirmPassword"
-          (ngModelChange)="confirmPasswordTouched = confirmPassword.length > 0"
-          (input)="handleInputChange($event)"
-          id="confirm-password"
-          name="confirm-password"
-          type="password"
-          hlmInput
-          class="w-full px-3 py-2 border border-gray-300 rounded-md transition-colors duration-300 ease-in-out"
-          [ngClass]="{
-            valid:
-              confirmPasswordTouched &&
-              confirmPassword === password &&
-              confirmPassword.length > 0,
-            invalid:
-              (confirmPasswordTouched && confirmPassword !== password) ||
-              (formSubmitted && confirmPassword === '')
-          }"
-          required
-          minlength="6"
-        />
+        <div class="relative">
+          <input
+            [(ngModel)]="confirmPassword"
+            (ngModelChange)="
+              confirmPasswordTouched = confirmPassword.length > 0
+            "
+            (input)="handleInputChange($event)"
+            id="confirm-password"
+            name="confirm-password"
+            [type]="confirmPasswordVisible ? 'text' : 'password'"
+            hlmInput
+            class="w-full px-3 py-2 border border-gray-300 rounded-md transition-colors duration-300 ease-in-out"
+            [ngClass]="{
+              valid:
+                confirmPasswordTouched &&
+                confirmPassword === password &&
+                confirmPassword.length > 0,
+              invalid:
+                (confirmPasswordTouched && confirmPassword !== password) ||
+                (formSubmitted && confirmPassword === '')
+            }"
+            required
+            minlength="6"
+            autocomplete="off"
+          />
+          <img
+            *ngIf="!confirmPasswordVisible"
+            src="assets/icons/eye.svg"
+            alt="Show confirm password"
+            width="24"
+            height="24"
+            class="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
+            (click)="togglePasswordVisibility('confirmPassword')"
+          />
+          <img
+            *ngIf="confirmPasswordVisible"
+            src="assets/icons/eye-off.svg"
+            alt="Hide confirm password"
+            width="24"
+            height="24"
+            class="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
+            (click)="togglePasswordVisibility('confirmPassword')"
+          />
+        </div>
         <div
           *ngIf="
             (confirmPasswordTouched && confirmPassword !== password) ||
@@ -122,11 +174,11 @@
           "
           class="text-red-500 text-sm mt-1"
         >
-          <small *ngIf="formSubmitted && confirmPassword === ''"
-            >Это поле обязательно для заполнения.</small
+          <small *ngIf="formSubmitted && confirmPassword === ''">
+            Это поле обязательно для заполнения.</small
           >
-          <small *ngIf="confirmPasswordTouched && confirmPassword !== password"
-            >Пароли не совпадают.</small
+          <small *ngIf="confirmPasswordTouched && confirmPassword !== password">
+            Пароли не совпадают.</small
           >
         </div>
       </div>
@@ -139,8 +191,8 @@
           hlmInput
           class="mr-2"
         />
-        <label for="remember" hlmLabel class="text-gray-700"
-          >Запомнить меня</label
+        <label for="remember" hlmLabel class="text-gray-700">
+          Запомнить меня</label
         >
       </div>
 
