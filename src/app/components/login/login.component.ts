@@ -123,11 +123,11 @@ export class LoginComponent {
 
   currentIndex = 0;
   photos = [
-    { id: 1, caption: 'Подпись 1' },
-    { id: 2, caption: 'Подпись 2' },
-    { id: 3, caption: 'Подпись 3' },
-    { id: 4, caption: 'Подпись 4' },
-    { id: 5, caption: 'Подпись 5' },
+    { id: 1, caption: 'СТРАХОВОЙ АГЕНТ' },
+    { id: 2, caption: 'ПАЦИЕНТ' },
+    { id: 3, caption: 'СТОМАТОЛОГ' },
+    { id: 4, caption: 'СТОМАТОЛОГИЯ' },
+    { id: 5, caption: 'СТОМАТОЛОГ' },
   ];
 
   onPrevClick() {
