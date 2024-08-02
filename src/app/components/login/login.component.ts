@@ -31,6 +31,11 @@ export class LoginComponent {
   formSubmitted: boolean = false;
 
   onSubmit() {
+    const phoneInputElement = document.getElementById(
+      'phoneInput',
+    ) as HTMLInputElement;
+    this.phone = phoneInputElement?.value || '';
+
     this.formSubmitted = true;
     this.phoneTouched = true;
     this.passwordTouched = true;
@@ -58,7 +63,7 @@ export class LoginComponent {
   }
 
   isPhoneValid(phone: string): boolean {
-    const re = /^\+\d{1,3}\d{9,}$/;
+    const re = /^\d+$/;
     return re.test(phone);
   }
 
@@ -100,6 +105,8 @@ export class LoginComponent {
     this.phone = phoneNumber;
     this.isValidPhone = this.isPhoneValid(this.phone);
     this.phoneTouched = this.phone.length > 0;
+    console.log(this.isValidPhone);
+    console.log(this.phone);
   }
 
   currentIndex = 0;

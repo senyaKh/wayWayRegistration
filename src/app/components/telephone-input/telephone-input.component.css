@@ -33,16 +33,11 @@
   --iti-mobile-popup-margin: 30px;
 }
 .input-field {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
   transition: border-color 0.3s ease, background-color 0.3s ease,
-    box-shadow 0.3s ease;
+    box-shadow 0.3s ease !important;
   min-width: 352px !important;
+  outline: none;
 }
-
 .iti {
   position: relative;
   display: inline-block;
@@ -50,6 +45,7 @@
 .iti * {
   box-sizing: border-box;
 }
+
 .iti__hide {
   display: none;
 }
@@ -1531,4 +1527,9 @@
   .iti__globe {
     background-image: var(--iti-path-globe-2x);
   }
+}
+.iti.invalid {
+  border-color: #f56565 !important;
+  background-color: #ffeef0 !important;
+  box-shadow: 0 0 5px rgba(245, 101, 101, 0.5) !important;
 }

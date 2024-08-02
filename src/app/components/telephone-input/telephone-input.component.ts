@@ -42,11 +42,5 @@ export class TelephoneInputComponent implements AfterViewInit {
       placeholderNumberType: 'MOBILE',
       separateDialCode: true,
     });
-
-    this.phoneInput.nativeElement.addEventListener('input', () => {
-      const phoneNumber = this.itiInstance.getNumber();
-      this.phoneChange.emit(phoneNumber);
-      console.log(phoneNumber);
-    });
   }
 }
