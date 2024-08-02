@@ -32,18 +32,21 @@ export class TelephoneInputComponent implements AfterViewInit {
       utilsScript:
         'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.15/js/utils.min.js',
       initialCountry: 'auto',
-      geoIpLookup: (callback:any) => {
+      geoIpLookup: (callback: any) => {
         fetch('https://ipapi.co/json/')
           .then((response) => response.json())
           .then((data) => callback(data.country_code))
           .catch(() => callback('us'));
       },
       onlyCountries: ['by', 'ru', 'ua', 'pl', 'lv', 'lt', 'es'],
+      placeholderNumberType: 'MOBILE',
+      separateDialCode: true,
     });
 
     this.phoneInput.nativeElement.addEventListener('input', () => {
       const phoneNumber = this.itiInstance.getNumber();
       this.phoneChange.emit(phoneNumber);
+      console.log(phoneNumber);
     });
   }
 }
