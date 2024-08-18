@@ -1,6 +1,7 @@
 <div class="flex">
   <div class="w-1/2 p-2 mb-4">
     <form
+      [formGroup]="form"
       (ngSubmit)="onSubmit()"
       class="max-w-sm mx-auto p-4 bg-white shadow-md rounded-md"
       novalidate
@@ -17,27 +18,20 @@
 
       <div class="mb-4">
         <label for="phone" hlmLabel class="block mb-2 text-gray-700">
-          Номер телефона:</label
-        >
+          Номер телефона:
+        </label>
         <app-telephone-input
           (phoneChange)="onPhoneChange($event)"
-          [ngClass]="{
-            valid: isValidPhone && phoneTouched,
-            invalid: !isValidPhone && phoneTouched
-          }"
         ></app-telephone-input>
         <div
-          *ngIf="
-            (phoneTouched && !isPhoneValid(phone)) ||
-            (formSubmitted && phone === '')
-          "
+          *ngIf="formSubmitted && form.controls['phone'].invalid"
           class="text-red-500 text-sm mt-1"
         >
-          <small *ngIf="formSubmitted && phone === ''">
-            Это поле обязательно для заполнения.</small
+          <small *ngIf="form.controls['phone'].hasError('required')"
+            >Это поле обязательно для заполнения.</small
           >
-          <small *ngIf="phoneTouched && !isPhoneValid(phone)">
-            Введите корректный номер телефона.</small
+          <small *ngIf="form.controls['phone'].hasError('invalidPhone')"
+            >Введите корректный номер телефона.</small
           >
         </div>
       </div>
@@ -52,24 +46,9 @@
         >
         <div class="relative">
           <input
-            [(ngModel)]="password"
-            (ngModelChange)="passwordTouched = password.length > 0"
-            (input)="handleInputChange($event)"
-            id="password"
-            name="password"
+            formControlName="password"
             [type]="passwordVisible ? 'text' : 'password'"
-            hlmInput
             class="w-full px-3 py-2 border border-gray-300 rounded-md transition-colors duration-300 ease-in-out"
-            [ngClass]="{
-              valid:
-                passwordTouched &&
-                password.length >= 6 &&
-                isValidPassword(password),
-              invalid:
-                (passwordTouched &&
-                  (password.length < 6 || !isValidPassword(password))) ||
-                (formSubmitted && password === '')
-            }"
             required
             minlength="6"
             autocomplete="off"
@@ -94,23 +73,14 @@
           />
         </div>
         <div
-          *ngIf="
-            (passwordTouched &&
-              (password.length < 6 || !isValidPassword(password))) ||
-            (formSubmitted && password === '')
-          "
+          *ngIf="formSubmitted && form.controls['password'].invalid"
           class="text-red-500 text-sm mt-1"
         >
-          <small *ngIf="formSubmitted && password === ''">
-            Это поле обязательно для заполнения.</small
+          <small *ngIf="form.controls['password'].hasError('required')"
+            >Это поле обязательно для заполнения.</small
           >
-          <small
-            *ngIf="
-              passwordTouched &&
-              (password.length < 6 || !isValidPassword(password))
-            "
-            >Пароль должен быть не менее 6 символов и содержать только латинские
-            буквы и арабские цифры.</small
+          <small *ngIf="form.controls['password'].hasError('minlength')"
+            >Пароль должен быть не менее 6 символов.</small
           >
         </div>
       </div>
@@ -120,30 +90,14 @@
         class="mb-4 relative password-input-wrapper"
         style="min-height: 80px"
       >
-        <label for="confirm-password" hlmLabel class="block mb-2 text-gray-700">
+        <label for="confirmPassword" hlmLabel class="block mb-2 text-gray-700">
           Повторите пароль:</label
         >
         <div class="relative">
           <input
-            [(ngModel)]="confirmPassword"
-            (ngModelChange)="
-              confirmPasswordTouched = confirmPassword.length > 0
-            "
-            (input)="handleInputChange($event)"
-            id="confirm-password"
-            name="confirm-password"
+            formControlName="confirmPassword"
             [type]="confirmPasswordVisible ? 'text' : 'password'"
-            hlmInput
             class="w-full px-3 py-2 border border-gray-300 rounded-md transition-colors duration-300 ease-in-out"
-            [ngClass]="{
-              valid:
-                confirmPasswordTouched &&
-                confirmPassword === password &&
-                confirmPassword.length > 0,
-              invalid:
-                (confirmPasswordTouched && confirmPassword !== password) ||
-                (formSubmitted && confirmPassword === '')
-            }"
             required
             minlength="6"
             autocomplete="off"
@@ -168,18 +122,10 @@
           />
         </div>
         <div
-          *ngIf="
-            (confirmPasswordTouched && confirmPassword !== password) ||
-            (formSubmitted && confirmPassword === '')
-          "
+          *ngIf="formSubmitted && form.hasError('mismatch')"
           class="text-red-500 text-sm mt-1"
         >
-          <small *ngIf="formSubmitted && confirmPassword === ''">
-            Это поле обязательно для заполнения.</small
-          >
-          <small *ngIf="confirmPasswordTouched && confirmPassword !== password">
-            Пароли не совпадают.</small
-          >
+          <small>Пароли не совпадают.</small>
         </div>
       </div>
 
@@ -191,8 +137,8 @@
           hlmInput
           class="mr-2"
         />
-        <label for="remember" hlmLabel class="text-gray-700">
-          Запомнить меня</label
+        <label for="remember" hlmLabel class="text-gray-700"
+          >Запомнить меня</label
         >
       </div>
 
@@ -213,12 +159,11 @@
     <p class="max-w-sm mx-auto my-0 w-1/2 p-1 mt-14 text-xs">
       Ознакомиться с
       <a href="#" class="font-bold"
-        >Политикой конфиденциальностии Условиями предоставления услуг</a
+        >Политикой конфиденциальности и Условиями предоставления услуг</a
       >
     </p>
   </div>
 
-  <!-- Правая половина экрана -->
   <div class="flex items-center">
     <div class="w-1/4 bg-white flex flex-col items-center">
       <button
@@ -285,7 +230,6 @@
     </div>
   </div>
 
-  <!-- Фотографии -->
   <div class="absolute top-0 right-40 w-1/4 p-4 flex flex-col space-y-4">
     <div
       *ngFor="let photo of photos; let i = index"
