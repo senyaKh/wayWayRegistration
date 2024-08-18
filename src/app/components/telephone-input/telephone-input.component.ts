@@ -35,7 +35,7 @@ export class TelephoneInputComponent implements AfterViewInit {
       utilsScript:
         'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.15/js/utils.min.js',
       initialCountry: 'auto',
-      separateDialCode: true,
+      separateDialCode: false,
       geoIpLookup: (callback) => {
         fetch('https://ipapi.co/json/')
           .then((response) => response.json())
@@ -44,19 +44,35 @@ export class TelephoneInputComponent implements AfterViewInit {
       },
     });
 
-    this.phoneInput.nativeElement.addEventListener('blur', () => {
-      const isValid = this.itiInstance.isValidNumber();
-      const number = this.itiInstance.getNumber();
+    console.log('intl-tel-input и utilsScript загружены:', this.itiInstance);
 
-      // Логирование данных
-      console.log('Номер телефона из intl-tel-input:', number);
-      console.log('Валидность номера:', isValid);
+    this.phoneInput.nativeElement.addEventListener('blur', () =>
+      this.emitPhoneChange(),
+    );
+    this.phoneInput.nativeElement.addEventListener('input', () =>
+      this.emitPhoneChange(),
+    );
+  }
 
-      if (isValid && number) {
-        this.phoneChange.emit({ number, isValid });
-      } else {
-        this.phoneChange.emit({ number: '', isValid: false });
-      }
-    });
+  emitPhoneChange(): void {
+    const rawNumber = this.phoneInput.nativeElement.value;
+
+    const isValid = this.validatePhoneNumber(rawNumber);
+    const formattedNumber = isValid ? rawNumber : '';
+
+    this.phoneChange.emit({ number: formattedNumber, isValid });
+
+    if (isValid) {
+      this.phoneInput.nativeElement.classList.add('valid');
+      this.phoneInput.nativeElement.classList.remove('invalid');
+    } else {
+      this.phoneInput.nativeElement.classList.add('invalid');
+      this.phoneInput.nativeElement.classList.remove('valid');
+    }
+  }
+
+  validatePhoneNumber(phone: string): boolean {
+    const phoneRegEx = /^\+?\d{10,14}$/;
+    return phoneRegEx.test(phone);
   }
 }
