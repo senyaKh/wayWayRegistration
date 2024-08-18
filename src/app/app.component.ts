@@ -11,12 +11,10 @@ import { HeaderComponent } from './components/header/header.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-
 export class AppComponent implements OnInit {
   title = 'WayAlay';
   constructor(private router: Router, private titleService: Title) {}
 
-  
   ngOnInit() {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
