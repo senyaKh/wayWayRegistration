@@ -1,0 +1,34 @@
+<div class="modal" id="modal" [ngClass]="{ show: isModalVisible }">
+  <button id="closeBtn" (click)="closeModal()">
+    <img src="../../../../assets/" alt="" />
+  </button>
+  <div class="modal-container">
+    <div class="head">
+      <img src="{{ imgPath }}" alt="" />
+      <div class="head-text">
+        <h1>{{ headerText }}</h1>
+        <p>{{ dontWorry }}</p>
+        <p>{{ baseProcedure }}</p>
+      </div>
+    </div>
+
+    <div class="main">
+      <h2>{{ codeConfirm }}</h2>
+      <p>
+        {{ phoneTextBefore }}<span>{{ formattedPhoneValue }}</span
+        >{{ phoneTextAfter }}
+      </p>
+      <code-input
+        [isCodeHidden]="false"
+        [codeLength]="6"
+        (codeChanged)="onCodeChanged($event)"
+        (codeCompleted)="onCodeCompleted($event)"
+      ></code-input>
+    </div>
+
+    <p class="resend" (click)="resendCode()">
+      <span style="margin-right: 10px">{{ formattedTime }}</span> Отправить код
+      повторно
+    </p>
+  </div>
+</div>
