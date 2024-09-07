@@ -29,51 +29,6 @@ input {
   transition: border-color 0.3s ease, background-color 0.3s ease,
     box-shadow 0.3s ease !important;
 }
-
-.img-container-1 {
-  width: 400px;
-  height: 245px;
-  background-image: url('../../../assets/agent.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-.img-container-2 {
-  width: 400px;
-  height: 400px;
-  background-image: url('../../../assets/patient.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-.img-container-3 {
-  width: 400px;
-  height: 400px;
-  background-image: url('../../../assets/stomatolog.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-.img-container-4 {
-  width: 400px;
-  height: 400px;
-  background-image: url('../../../assets/stomatologia.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-.img-container-5 {
-  width: 400px;
-  height: 400px;
-  background-image: url('../../../assets/women.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-}
 .password-input-wrapper {
   position: relative;
 }

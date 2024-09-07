@@ -44,7 +44,9 @@ export class LoginComponent {
 
   showModal: boolean = false;
   onSubmit() {
-    const phoneInputElement = document.getElementById('phoneInput') as HTMLInputElement;
+    const phoneInputElement = document.getElementById(
+      'phoneInput',
+    ) as HTMLInputElement;
     this.phone = phoneInputElement?.value || '';
 
     this.formSubmitted = true;
@@ -58,21 +60,8 @@ export class LoginComponent {
     if (this.isFormValid()) {
       localStorage.setItem('phone', this.phone);
       localStorage.setItem('password', this.password);
-      console.log('Данные верны, можно продолжить регистрацию.');
-    } else {
-      console.log('Ошибка при вводе данных.');
-      if (!this.passwordMatch) {
-        console.error('Пароли не совпадают');
-      }
-      if (!this.isValidPhone) {
-        console.error('Неверный формат номера телефона');
-      }
-      if (!this.isValidPassword(this.password)) {
-        console.error('Пароль содержит недопустимые символы');
-      }
     }
   }
-
 
   isPhoneValid(phone: string): boolean {
     const re = /^\d+$/;
@@ -117,34 +106,5 @@ export class LoginComponent {
     this.phone = phoneNumber;
     this.isValidPhone = this.isPhoneValid(this.phone);
     this.phoneTouched = this.phone.length > 0;
-    console.log(this.isValidPhone);
-    console.log(this.phone);
-  }
-
-  currentIndex = 0;
-  photos = [
-    { id: 1, caption: 'СТРАХОВОЙ АГЕНТ' },
-    { id: 2, caption: 'ПАЦИЕНТ' },
-    { id: 3, caption: 'СТОМАТОЛОГ' },
-    { id: 4, caption: 'СТОМАТОЛОГИЯ' },
-    { id: 5, caption: 'СТОМАТОЛОГ' },
-  ];
-
-  onPrevClick() {
-    if (this.currentIndex > 0) {
-      this.currentIndex--;
-    }
-  }
-
-  onNextClick() {
-    if (this.currentIndex < this.photos.length - 1) {
-      this.currentIndex++;
-    } else if (this.currentIndex === this.photos.length - 1) {
-      this.currentIndex = 0;
-    }
-  }
-
-  onSelectPhoto(index: number) {
-    this.currentIndex = index;
   }
 }
