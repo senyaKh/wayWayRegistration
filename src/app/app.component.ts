@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, RouterOutlet, NavigationEnd } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { filter } from 'rxjs/operators';
-import { HeaderComponent } from './components/shared/header/header.component';
+import { HeaderComponent } from './components/shared/app-components/header/header.component';
 
 @Component({
   selector: 'app-root',
