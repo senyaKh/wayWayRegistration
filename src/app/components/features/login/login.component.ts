@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HlmInputModule } from '@spartan-ng/ui-input-helm';
-import { HlmLabelDirective } from '../../../../../spartanComponents/ui-label-helm/src';
+import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 import { TelephoneInputComponent } from '../../shared/ui/telephone-input/telephone-input.component';
 import { DropdownComponent } from '../../shared/ui/dropdown/dropdown.component';
 @Component({
