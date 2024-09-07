@@ -24,10 +24,10 @@
       var(--iti-spacer-horizontal) + var(--iti-arrow-width) +
       var(--iti-input-padding)
   );
-  --iti-path-flags-1x: url('../../../assets/flags/flags.webp');
-  --iti-path-flags-2x: url('../../../assets/flags/flags@2x.webp');
-  --iti-path-globe-1x: url('../../../assets/flags/globe.webp');
-  --iti-path-globe-2x: url('../../../assets/flags/globe@2x.webp');
+  --iti-path-flags-1x: url('../../../../../assets/flags/flags.webp');
+  --iti-path-flags-2x: url('../../../../../assets/flags/flags@2x.webp');
+  --iti-path-globe-1x: url('../../../../../assets/flags/globe.webp');
+  --iti-path-globe-2x: url('../../../../../assets/flags/globe@2x.webp');
   --iti-flag-sprite-width: 5762px;
   --iti-flag-sprite-height: 15px;
   --iti-mobile-popup-margin: 30px;
