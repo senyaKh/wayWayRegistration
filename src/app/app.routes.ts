@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import {  Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
-import { HeaderComponent } from './components/header/header.component';
+import { HeaderComponent } from './components/shared/header/header.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; // Import the FormsModule
 import { DropdownComponent } from './components/dropdown/dropdown.component';
