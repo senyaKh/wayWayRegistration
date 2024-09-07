@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HlmInputModule } from '../ui-input-helm/src';
-import { HlmLabelDirective } from '../ui-label-helm/src/lib/hlm-label.directive';
+import { HlmInputModule } from '@spartan-ng/ui-input-helm';
+import { HlmLabelDirective } from '../../../../spartanComponents/ui-label-helm/src';
 import { TelephoneInputComponent } from '../telephone-input/telephone-input.component';
 import { DropdownComponent } from '../dropdown/dropdown.component';
 @Component({
